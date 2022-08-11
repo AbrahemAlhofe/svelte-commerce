@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	import Grid from '$lib/Grid.svelte';
+	import Grid from '$lib/grid/Grid.svelte';
 	import { products } from '$stores/products';
 </script>
 
