@@ -6,6 +6,6 @@ export const products = readable<Product[]>(new Array(10).fill(null).map(() => (
     id: faker.datatype.uuid(),
     name: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
-    thumbnail: "faker.image.food(1234, 2345, true)",
+    thumbnail: faker.image.food(1200, 800, true),
     price: Number.parseInt(faker.commerce.price())
 })));
