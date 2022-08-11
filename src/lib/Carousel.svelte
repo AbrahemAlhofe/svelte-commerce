@@ -4,12 +4,14 @@
 
   export let items: Product[] = [];
 
+  let isFocused = false;
+
 </script>
 
-<div class="slider relative w-full overflow-scroll bg-light">
+<div class="slider relative w-full overflow-scroll bg-light" class:slider--paused={isFocused} >
   <div class="slide-track flex my-4 gap-2">
     {#each items as item (item.id)}
-      <a href={`/products/${item.id}`} class="slide relative h-[20vh] flex-none md:w-1/3 rounded-md overflow-hidden">
+      <a on:mouseover={() => isFocused = true} on:focus={() => isFocused = true} on:mouseout={() => isFocused = false} on:blur={() => isFocused = false} href={`/products/${item.id}`} class="slide relative h-[20vh] flex-none md:w-1/3 rounded-md overflow-hidden">
         <img
           alt={item.name}
           class="h-full"
@@ -55,4 +57,9 @@
     -webkit-animation: scroll 40s linear infinite;
     animation: scroll 40s linear infinite;
   }
+
+  .slider.slider--paused .slide-track {
+    animation-play-state: paused !important;
+  }
+
 </style>
