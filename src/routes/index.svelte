@@ -1,4 +1,5 @@
 <script context="module" lang="ts">
+	import Carousel from '$lib/Carousel.svelte';
 	export const prerender = true;
 </script>
 
@@ -12,4 +13,12 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<Grid products={$products} />
+<section>
+	<div class="lg:h-[90vh]">
+		<Grid products={$products} />
+	</div>
+</section>
+
+<section>
+	<Carousel items={$products} />
+</section>
