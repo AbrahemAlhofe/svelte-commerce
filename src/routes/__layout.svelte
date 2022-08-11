@@ -1,9 +1,15 @@
 <script lang="ts">
 	import Header from '$lib/header/Header.svelte';
+import ShoppingCart from '$lib/ShoppingCart.svelte';
 	import '../app.css';
+
+	let isCartOpen = false;
+
 </script>
 
-<Header />
+<Header on:openCart={() => isCartOpen = true}/>
+
+{#if isCartOpen} <ShoppingCart on:closeCart={() => isCartOpen = false} /> {/if}
 
 <main>
 	<slot />
