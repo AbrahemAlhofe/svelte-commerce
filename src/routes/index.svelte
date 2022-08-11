@@ -14,7 +14,7 @@
 </svelte:head>
 
 <section>
-	<div class="lg:h-[90vh]">
+	<div>
 		<Grid products={$products} />
 	</div>
 </section>
