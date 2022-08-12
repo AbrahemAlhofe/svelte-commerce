@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ShoppingBagIcon from '$lib/icons/ShoppingBagIcon.svelte';
 	import { createEventDispatcher } from 'svelte';
+	import { shoppingCart } from '$stores/shoppingCart'; 
 
 	const dispatch = createEventDispatcher();
 
@@ -14,8 +15,9 @@
 	
 	<div>
 		
-		<button class="pointer" on:click="{ () => dispatch("openCart") }">
+		<button class="pointer relative" on:click="{ () => dispatch("openCart") }">
 			<ShoppingBagIcon color="white" />
+			<div class="bg-gray-400 text-white rounded text-xs absolute px-1 bottom-0 left-0 -ml-2 -mb-2">{$shoppingCart.length}</div>
 		</button>
 
 	</div>
