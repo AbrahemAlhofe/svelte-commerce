@@ -16,6 +16,8 @@
 
     const dispatch = createEventDispatcher();
     let isLoading = false;
+    
+    $: total = $shoppingCart.reduce((total, product) => total += product.price, 0);
 
     function removeItem(index: number) { $shoppingCart = $shoppingCart.filter((_, i) => i !== index) }
 
@@ -97,9 +99,10 @@
         {/each}
       </div>
       {#if $shoppingCart.length !== 0}
+        <div class="text-white text-xl font-bold mt-3">Total : ${total}</div>
         <button
           on:click={checkout}
-          class="mt-6 flex w-full items-center justify-center bg-white p-3 text-sm font-medium uppercase text-black opacity-90 hover:opacity-100"
+          class="mt-3 flex w-full items-center justify-center bg-white p-3 text-sm font-medium uppercase text-black opacity-90 hover:opacity-100"
         >
           <span>Proceed to Checkout</span>
           {#if isLoading}
