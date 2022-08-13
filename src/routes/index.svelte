@@ -1,10 +1,10 @@
 <script context="module" lang="ts">
-	import Carousel from '$lib/Carousel.svelte';
 	export const prerender = true;
 </script>
 
 <script lang="ts">
 	import Grid from '$lib/grid/Grid.svelte';
+	import Carousel from '$lib/Carousel.svelte';
 	import { products } from '$stores/products';
 </script>
 
