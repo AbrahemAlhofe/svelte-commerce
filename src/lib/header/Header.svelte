@@ -2,6 +2,7 @@
 	import ShoppingBagIcon from '$lib/icons/ShoppingBagIcon.svelte';
 	import { createEventDispatcher } from 'svelte';
 	import { shoppingCart } from '$stores/shoppingCart'; 
+	import SearchBar from '$lib/SearchBar.svelte';
 
 	const dispatch = createEventDispatcher();
 
@@ -11,6 +12,10 @@
 
 	<div class="text-white">
 		SvelteECommerce
+	</div>
+
+	<div class="h-full">
+		<SearchBar/>
 	</div>
 	
 	<div>
