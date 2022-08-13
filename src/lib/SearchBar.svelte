@@ -5,8 +5,7 @@
   
     let value = '';
     function submit() {
-      if ($page.url.pathname !== 'search') goto('/search');
-      // search.set(value);
+      if ($page.url.pathname !== 'search') goto(`/search?query=${value}`);
     }
   </script>
   
