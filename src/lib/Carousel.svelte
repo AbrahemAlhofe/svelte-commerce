@@ -1,6 +1,7 @@
 <script lang="ts">
   
   import type { Product } from '$lib/types';
+  import GridTile from './grid/GridTile.svelte';
 
   export let items: Product[] = [];
 
@@ -11,16 +12,9 @@
 <div class="slider relative w-full overflow-scroll bg-light" class:slider--paused={isFocused} >
   <div class="slide-track flex my-4 gap-2">
     {#each items as item (item.id)}
-      <a on:mouseover={() => isFocused = true} on:focus={() => isFocused = true} on:mouseout={() => isFocused = false} on:blur={() => isFocused = false} href={`/products/${item.id}`} class="slide relative h-[20vh] flex-none md:w-1/3 rounded-md overflow-hidden">
-        <img
-          alt={item.name}
-          class="h-full"
-          decoding="async"
-          loading="lazy"
-          src={item.thumbnail}
-        />
-        <div class="absolute top-0 left-0 z-40 bg-black p-4 text-white">{item.name}</div>
-      </a>
+      <div class="slide relative h-[20vh] flex-none md:w-1/3 rounded-md overflow-hidden">
+        <GridTile {...{...item, description: undefined, href: `/products/${item.id}` }} on:mouseover={() => isFocused = true} on:focus={() => isFocused = true} on:mouseout={() => isFocused = false} on:blur={() => isFocused = false} href={`/products/${item.id}`}/>
+      </div>
     {/each}
   </div>
 </div>
