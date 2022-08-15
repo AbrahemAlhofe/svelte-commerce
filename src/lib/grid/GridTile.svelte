@@ -6,12 +6,12 @@
     export let name: Product["name"] | undefined = undefined;
     export let description: Product["description"] | undefined = undefined;
     export let thumbnail: Product["thumbnail"] | undefined = undefined;
-    export let id: Product["id"] | undefined = undefined;
+    export let href: string | undefined = undefined;
 
 </script>
 
 <div class="h-full w-full bg-indigo-600 overflow-hidden rounded">
-  <svelte:element this={id === undefined ? "div" : "a"} href="/products/{id}" class="relative flex h-full w-full items-center justify-center">
+  <svelte:element this={href === undefined ? "div" : "a"} href="{href}" class="relative flex h-full w-full items-center justify-center">
     {#if thumbnail}
       <img
         src="{thumbnail}"

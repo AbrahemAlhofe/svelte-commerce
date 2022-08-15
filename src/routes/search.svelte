@@ -16,7 +16,7 @@
 		{#each matchedProducts as product, i (product.id)}
 			<li class="max-w-md">
 				<div class="group relative block aspect-square overflow-hidden bg-dark">
-					<GridTile id={product.id} name={product.name} thumbnail={product.thumbnail} />
+					<GridTile href={`/products/${product.id}`} name={product.name} thumbnail={product.thumbnail} />
 				</div>
 			</li>
 		{/each}
