@@ -11,7 +11,7 @@
 </script>
 
 <div class="h-full w-full bg-indigo-600 overflow-hidden rounded">
-  <svelte:element this={href === undefined ? "div" : "a"} href="{href}" class="relative flex h-full w-full items-center justify-center">
+  <svelte:element this={href === undefined ? "div" : "a"} href="{href}" class="relative flex h-full w-full items-center justify-center" on:mouseover on:mouseout on:focus on:blur>
     {#if thumbnail}
       <img
         src="{thumbnail}"
