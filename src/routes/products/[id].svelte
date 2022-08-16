@@ -21,11 +21,7 @@
 		if (product) {
 			addToCartProcess = new Promise((resolve, reject) => {
 				setTimeout(() => {
-					shoppingCart.update((shoppingCart) => {
-						shoppingCart.push({ ...product, quantity: 1 });
-						return shoppingCart;
-					});
-
+					shoppingCart.addItem({ ...product, quantity: 1 });
 					resolve();
 				}, 2000);
 			});

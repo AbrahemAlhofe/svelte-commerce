@@ -19,11 +19,6 @@
     
     $: total = $shoppingCart.reduce((total, product) => total += product.price, 0);
 
-    function removeItem(index: number) { $shoppingCart = $shoppingCart.filter((_, i) => i !== index) }
-
-    function increaseItemQuantity(index: number) { $shoppingCart[index].quantity += 1; }
-    function decreaseItemQuantity(index: number) { $shoppingCart[index].quantity -= 1; }
-
     async function checkout() { isLoading = true }
 
   </script>
@@ -68,7 +63,7 @@
           <div class="mb-4 flex w-full">
             <button
               on:click={() => {
-                removeItem(index);
+                shoppingCart.removeItem(index);
               }}
               class="mr-2 flex h-8 w-8 items-center justify-center border border-white/40 bg-white/0 hover:bg-white/10"
             >
@@ -80,7 +75,7 @@
               </div>
               <button
                 on:click={() => {
-                  decreaseItemQuantity(index);
+                  shoppingCart.decreaseItemQuantity(index);
                 }}
                 class="ml-auto flex h-8 w-8 items-center justify-center border-l border-white/40 bg-white/0 hover:bg-white/10"
               >
@@ -88,7 +83,7 @@
               </button>
               <button
                 on:click={() => {
-                  increaseItemQuantity(index);
+                  shoppingCart.increaseItemQuantity(index);
                 }}
                 class="flex h-8 w-8 items-center justify-center border-l border-white/40 bg-white/0 hover:bg-white/10"
               >
