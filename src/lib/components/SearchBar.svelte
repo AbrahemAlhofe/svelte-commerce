@@ -3,7 +3,7 @@
     import { goto } from '$app/navigation';
     import SearchIcon from '$lib/icons/SearchIcon.svelte';
   
-    let value = '';
+    export let value = '';
     function submit() {
       if ($page.url.pathname !== 'search') goto(`/search?query=${value}`);
     }

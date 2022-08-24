@@ -3,8 +3,11 @@
 	import { createEventDispatcher } from 'svelte';
 	import { shoppingCart } from '$stores/shoppingCart'; 
 	import SearchBar from '$lib/components/SearchBar.svelte';
+	import { page } from '$app/stores';
 
 	const dispatch = createEventDispatcher();
+	
+	const searchQuery = $page.url.searchParams.get('query') ?? undefined;
 
 </script>
 
@@ -15,7 +18,7 @@
 	</div>
 
 	<div class="h-full">
-		<SearchBar/>
+		<SearchBar value="{searchQuery}"/>
 	</div>
 	
 	<div>
