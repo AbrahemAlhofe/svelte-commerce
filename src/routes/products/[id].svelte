@@ -1,6 +1,6 @@
 <script lang="ts">
 	// types
-	import type { Product } from '$lib/types';
+	import type { Category, Product, ShoppingCartItem } from '$lib/types';
 
 	// stores
 	import { products } from '$stores/products';
@@ -12,21 +12,24 @@
 	import StarIcon from '$lib/icons/StarIcon.svelte';
     import Carousel from '$lib/Carousel.svelte';
     import Loader from '$lib/Loader.svelte';
+	import { categories } from '$stores/categories';
 
-	const product: Product | undefined = $products.find((product) => product.id == $page.params.id);
-    console.log({product});
+	const product: Product = $products.find((product) => product.id == $page.params.id) as Product;
+	const category: Category = $categories.find(category => category.id == product.category) as Category;
+	const item: ShoppingCartItem = { ...product, quantity: 1 };
+
 	let addToCartProcess: Promise<void> = Promise.resolve();
-
 	function addToCart() {
 		if (product) {
 			addToCartProcess = new Promise((resolve, reject) => {
 				setTimeout(() => {
-					shoppingCart.addItem({ ...product, quantity: 1 });
+					shoppingCart.addItem(item);
 					resolve();
 				}, 2000);
 			});
 		}
 	}
+
 </script>
 
 <svelte:head>
@@ -76,17 +79,17 @@
 				</div> -->
 			</div>
 			<div class="h-full p-6 md:w-1/3">
-				<!-- {#each product.options as option}
+				{#each Object.entries(category.properties) as [name, values]}
 					<div class="mb-8">
-						<div class="mb-4 text-sm uppercase tracking-wide">{option.name}</div>
+						<div class="mb-4 text-sm uppercase tracking-wide">{name}</div>
 						<div class="flex">
-							{#each option.values as value}
+							{#each values as value}
 								<button
 									on:click={() => {
-										selectedOptions = { ...selectedOptions, [option.name]: value };
+										item.properties[name] = value;
 									}}
 									class={`${value.length <= 3 ? 'w-12' : 'px-2'} ${
-										selectedOptions[option.name] === value ? 'opacity-100' : 'opacity-60'
+										item.properties[name] === value ? 'opacity-100' : 'opacity-60'
 									} transition duration-300 ease-in-out hover:scale-110 hover:opacity-100 border-white h-12 mr-3 flex items-center justify-center rounded-full border`}
 								>
 									{value}
@@ -94,7 +97,7 @@
 							{/each}
 						</div>
 					</div>
-				{/each} -->
+				{/each}
 				<p class="text-sm">{product.description}</p>
 				<div class="mt-8 flex items-center justify-between">
 					<div class="flex items-center">
