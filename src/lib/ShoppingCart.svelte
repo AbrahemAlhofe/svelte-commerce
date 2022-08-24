@@ -52,10 +52,12 @@
             />
             <div class="ml-4 flex w-full flex-col justify-between">
               <div class="flex w-full justify-between">
-                <di>
+                <div>
                   <p class="text-lg font-bold text-white">{item.name}</p>
-                  <p class="text-sm font-light text-white">{item.description}</p>
-                </di>
+                  {#each Object.entries(item.properties) as [name, value]}
+                    <p class="text-sm font-light text-white capitalize text-gray-300/[0.6]">{value}</p>
+                  {/each}
+                </div>
                 <p class="font-medium text-white">${item.price}</p>
               </div>
             </div>
