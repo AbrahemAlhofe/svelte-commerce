@@ -8,10 +8,10 @@
 	import { page } from '$app/stores';
 
 	// components
-	import GridTile from '$lib/grid/GridTile.svelte';
+	import GridTile from '$lib/components/GridTile.svelte';
 	import StarIcon from '$lib/icons/StarIcon.svelte';
-    import Carousel from '$lib/Carousel.svelte';
-    import Loader from '$lib/Loader.svelte';
+    import Carousel from '$lib/components/Carousel.svelte';
+    import Loader from '$lib/components/Loader.svelte';
 	import { categories } from '$stores/categories';
 
 	const product: Product = $products.find((product) => product.id == $page.params.id) as Product;

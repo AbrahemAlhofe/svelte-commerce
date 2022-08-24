@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Header from '$lib/header/Header.svelte';
-import ShoppingCart from '$lib/ShoppingCart.svelte';
+	import Header from '$lib/components/Header.svelte';
+	import ShoppingCart from '$lib/components/ShoppingCart.svelte';
 	import '../app.css';
 
 	let isCartOpen = false;

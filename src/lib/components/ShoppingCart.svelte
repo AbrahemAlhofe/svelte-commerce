@@ -8,11 +8,11 @@
     // Icons
     import ShoppingBagIcon from '$lib/icons/ShoppingBagIcon.svelte';
     import CloseIcon from '$lib/icons/CloseIcon.svelte';
-    import MinusIcon from './icons/MinusIcon.svelte';
-    import PlusIcon from './icons/PlusIcon.svelte';
+    import MinusIcon from '$lib/icons/MinusIcon.svelte';
+    import PlusIcon from '$lib/icons/PlusIcon.svelte';
 
     // Components
-    import Loader from '$lib/Carousel.svelte';
+    import Loader from '$lib/components/Carousel.svelte';
 
     const dispatch = createEventDispatcher();
     let isLoading = false;

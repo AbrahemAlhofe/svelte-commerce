@@ -1,5 +1,5 @@
 <script>
-	import GridTile from '$lib/grid/GridTile.svelte';
+	import GridTile from '$lib/components/GridTile.svelte';
 	import { products } from '$stores/products';
 	import { page } from '$app/stores';
 

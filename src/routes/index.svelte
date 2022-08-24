@@ -3,8 +3,8 @@
 </script>
 
 <script lang="ts">
-	import Grid from '$lib/grid/Grid.svelte';
-	import Carousel from '$lib/Carousel.svelte';
+	import Grid from '$lib/components/Grid.svelte';
+	import Carousel from '$lib/components/Carousel.svelte';
 	import { products } from '$stores/products';
 </script>
 

@@ -2,7 +2,7 @@
 	import ShoppingBagIcon from '$lib/icons/ShoppingBagIcon.svelte';
 	import { createEventDispatcher } from 'svelte';
 	import { shoppingCart } from '$stores/shoppingCart'; 
-	import SearchBar from '$lib/SearchBar.svelte';
+	import SearchBar from '$lib/components/SearchBar.svelte';
 
 	const dispatch = createEventDispatcher();
 

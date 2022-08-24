@@ -1,7 +1,7 @@
 <script lang="ts">
 
     import type { Product } from "$lib/types";
-    import GridTile from "$lib/grid/GridTile.svelte";
+    import GridTile from "$lib/components/GridTile.svelte";
         
     export let products: Product[];
 
