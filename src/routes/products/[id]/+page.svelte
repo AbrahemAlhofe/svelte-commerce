@@ -38,7 +38,7 @@
 	{/if}
 </svelte:head>
 
-<div>
+<div class="max-w-[1024px] w-full m-auto">
 	{#if product}
 		<div class="flex flex-col md:flex-row">
 			<div class="md:h-90 md:w-2/3">
