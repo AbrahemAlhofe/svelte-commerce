@@ -13,12 +13,14 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
-	<div>
-		<Grid products={$products} />
-	</div>
-</section>
-
-<section>
-	<Carousel items={$products} />
-</section>
+<div class="max-w-[1024px] w-full m-auto">
+	<section>
+		<div>
+			<Grid products={$products} />
+		</div>
+	</section>
+	
+	<section>
+		<Carousel items={$products} />
+	</section>
+</div>
