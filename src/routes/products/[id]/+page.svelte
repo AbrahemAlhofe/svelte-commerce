@@ -13,7 +13,7 @@
     import Carousel from '$lib/components/Carousel.svelte';
     import Loader from '$lib/components/Loader.svelte';
 	import { categories } from '$stores/categories';
-
+	
 	const product: Product = $products.find((product) => product.id == $page.params.id) as Product;
 	const category: Category = $categories.find(category => category.id == product.category) as Category;
 	const item: ShoppingCartItem = { ...product, quantity: 1 };

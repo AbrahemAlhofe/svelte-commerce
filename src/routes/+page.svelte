@@ -1,7 +1,3 @@
-<script context="module" lang="ts">
-	export const prerender = true;
-</script>
-
 <script lang="ts">
 	import Grid from '$lib/components/Grid.svelte';
 	import Carousel from '$lib/components/Carousel.svelte';
