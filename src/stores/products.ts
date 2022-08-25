@@ -31,11 +31,11 @@ const cups = new Array(3).fill(null).map(() => ({
 
 export const products = derived<Readable<Category[]>, Product[]>(
     categories,
-    ($categories, set) => (console.trace(), set(faker.helpers.shuffle([
+    ($categories, set) => set(faker.helpers.shuffle([
 
         ...clothes.map(product => ({ ...product, category: ($categories.find(category => category.name === "clothes") as Category).id })),
 
         ...cups.map(product => ({ ...product, category: ($categories.find(category => category.name === "cups") as Category).id }))
 
-    ])))
+    ]))
 );
