@@ -1,11 +1,10 @@
 <script lang="ts">
 	import GridTile from '$lib/components/GridTile.svelte';
 	import { products } from '$stores/products';
-	import { page } from '$app/stores';
+	import { query } from '$stores/search';
 	import { categories } from '$stores/categories';
 	import type { Product } from '$lib/types';
 
-	let query = $page.url.searchParams.get('query');
 	let targetCategory: string | null = null;
 	let targetProperties: Product['properties'] = {};
 
@@ -27,7 +26,7 @@
 		})
 		.filter((item) => {
 			if (!query) return item;
-			if (item.name.toLowerCase().includes(query.toLowerCase())) return item;
+			if (item.name.toLowerCase().includes($query.toLowerCase())) return item;
 		});
 
 </script>

@@ -1,10 +1,12 @@
 <script>
     import { page } from '$app/stores';
     import { goto } from '$app/navigation';
+    import { query } from "$stores/search";
     import SearchIcon from '$lib/icons/SearchIcon.svelte';
   
     export let value = '';
     function submit() {
+      query.set(value);
       if ($page.url.pathname !== 'search') goto(`/search?query=${value}`);
     }
   </script>
