@@ -3,14 +3,27 @@
 	import { products } from '$stores/products';
 	import { page } from '$app/stores';
 	import { categories } from '$stores/categories';
+	import type { Product } from '$lib/types';
 
 	let query = $page.url.searchParams.get('query');
 	let targetCategory: string | null = null;
+	let targetProperties: Product['properties'] = {};
+
+	$: properties = $categories.find(category => category.id === targetCategory)?.properties;
 
 	$: matchedProducts = $products
 		.filter(item => {
 			if (!targetCategory) return item;
 			if (item.category === targetCategory) return item;
+		})
+		.filter(item => {
+			const isTargetPropertiesEmpty = Object.entries(targetProperties).length === 0;
+			if ( isTargetPropertiesEmpty ) return true;
+			for (let name in targetProperties) {
+				const hasTargetProperty = item.properties[name].includes(targetProperties[name]);
+				if ( !hasTargetProperty ) return false;
+			}
+			return true;
 		})
 		.filter((item) => {
 			if (!query) return item;
@@ -35,6 +48,30 @@
 				{/each}
 			</ul>
 		</section>
+		{#if properties}
+		<hr class="my-5"/>
+		<section>
+			<h4 class="text-white text-2xl mb-3">Properties</h4>
+			<ul>
+				{#each Object.entries(properties) as [name, values]}
+					<li class="text-white my-2">
+						<span>{name}</span>
+						<ul class="flex flex-wrap gap-2">
+							{#each values as value}
+								<li
+									on:click={() => targetProperties[name] = value}
+									class={`${value.length <= 3 ? 'w-12' : 'px-2'} ${
+										targetProperties[name] === value ? 'opacity-100' : 'opacity-60'
+									} text-white cursor-pointer transition duration-300 ease-in-out hover:scale-105 hover:opacity-100 border-white h-12 flex items-center justify-center rounded-full border`}>
+									{value}
+								</li>
+							{/each}
+						</ul>
+					</li>
+				{/each}
+			</ul>
+		</section>
+		{/if}
 	</div>
 	<div class="grow">
 		<ul class="grid grid-flow-row gap-4 sm:grid-cols-2 md:grid-cols-3">
