@@ -4,6 +4,7 @@
 	import { query } from '$stores/search';
 	import { categories } from '$stores/categories';
 	import type { Product } from '$lib/types';
+    import FrownIcon from '$lib/icons/FrownIcon.svelte';
 
 	let targetCategory: string | null = null;
 	let targetProperties: Product['properties'] = {};
@@ -73,14 +74,35 @@
 		{/if}
 	</div>
 	<div class="grow">
-		<ul class="grid grid-flow-row gap-4 sm:grid-cols-2 md:grid-cols-3">
-			{#each matchedProducts as product, i (product.id)}
-				<li class="max-w-md">
-					<div class="group relative block aspect-square overflow-hidden bg-dark">
-						<GridTile href={`/products/${product.id}`} name={product.name} thumbnail={product.thumbnail} />
+
+		{#if matchedProducts.length !== 0}
+		
+			<ul class="grid grid-flow-row gap-4 sm:grid-cols-2 md:grid-cols-3">
+				{#each matchedProducts as product, i (product.id)}
+					<li class="max-w-md">
+						<div class="group relative block aspect-square overflow-hidden bg-dark">
+							<GridTile href={`/products/${product.id}`} name={product.name} thumbnail={product.thumbnail} />
+						</div>
+					</li>
+				{/each}
+			</ul>
+
+		{:else}
+
+			<div class="flex h-screen flex-col items-center justify-center ">
+				<div class="flex w-auto flex-col items-center justify-center p-6 md:p-0">
+				<div class="flex w-full items-center">
+					<div class="flex flex-none items-center justify-center rounded-full bg-white p-4">
+					<FrownIcon />
 					</div>
-				</li>
-			{/each}
-		</ul>
+					<div class="mx-6 h-20 w-px bg-white" />
+					<div class="text-lg font-medium">Sorry, But the product you're looking for doesn't exist.</div>
+				</div>
+				</div>
+			</div>
+
+		{/if}
+
+
 	</div>
 </div>
