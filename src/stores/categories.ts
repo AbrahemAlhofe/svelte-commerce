@@ -1,22 +1,14 @@
 import { readable } from 'svelte/store';
 import type { Category } from '$lib/types';
-import { faker } from '@faker-js/faker';
 
-export const categories = readable<Category[]>([
-    {
-        id: faker.datatype.uuid(),
-        name: "clothes",
-        properties: {
-            color: ["white", "black"],
-            size: ["small", "medium", "large"]
-        }
-    },
-    {
-        id: faker.datatype.uuid(),
-        name: "cups",
-        properties: {
-            color: ["white", "black"],
-            texture: ["sharp", "flat"]
-        }
-    }
-]);
+export const categories = readable<Category[]>([], (set) => {
+    
+    (async () => {
+        
+        const categories: Array<Category> = await fetch("http://127.0.0.1:5173/categories").then(response => response.json())
+    
+        set(categories);
+
+    })()
+
+});

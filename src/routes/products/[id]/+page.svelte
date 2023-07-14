@@ -1,22 +1,22 @@
 <script lang="ts">
 	// types
-	import type { Category, Product, ShoppingCartItem } from '$lib/types';
+	import type { Product } from '$lib/types';
 
 	// stores
 	import { products } from '$stores/products';
 	import { shoppingCart } from '$stores/shoppingCart';
-	import { page } from '$app/stores';
 
 	// components
 	import GridTile from '$lib/components/GridTile.svelte';
 	import StarIcon from '$lib/icons/StarIcon.svelte';
     import Carousel from '$lib/components/Carousel.svelte';
     import Loader from '$lib/components/Loader.svelte';
-	import { categories } from '$stores/categories';
 	
-	const product: Product = $products.find((product) => product.id == $page.params.id) as Product;
-	const category: Category = $categories.find(category => category.id == product.category) as Category;
-	const item: ShoppingCartItem = { ...product, quantity: 1 };
+	/** @type {import('./$types').PageData} */
+	export let data: Product;
+
+	$: product = data;
+	$: item = { ...product, quantity: 1 };
 
 	let addToCartProcess: Promise<void> = Promise.resolve();
 	function addToCart() {
@@ -79,7 +79,7 @@
 				</div> -->
 			</div>
 			<div class="h-full p-6 md:w-1/3">
-				{#each Object.entries(category.properties) as [name, values]}
+				{#each Object.entries(product.category.properties) as [name, values]}
 					<div class="mb-8">
 						<div class="mb-4 text-sm uppercase tracking-wide">{name}</div>
 						<div class="flex">

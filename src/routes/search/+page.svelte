@@ -6,15 +6,15 @@
 	import type { Product } from '$lib/types';
     import FrownIcon from '$lib/icons/FrownIcon.svelte';
 
-	let targetCategory: string | null = null;
+	let targetCategoryId: string | null = null;
 	let targetProperties: Product['properties'] = {};
 
-	$: properties = $categories.find(category => category.id === targetCategory)?.properties;
+	$: properties = $categories.find(category => category.id === targetCategoryId)?.properties;
 
 	$: matchedProducts = $products
 		.filter(item => {
-			if (!targetCategory) return item;
-			if (item.category === targetCategory) return item;
+			if (!targetCategoryId) return item;
+			if (item.category.id === targetCategoryId) return item;
 		})
 		.filter(item => {
 			const isTargetPropertiesEmpty = Object.entries(targetProperties).length === 0;
@@ -39,9 +39,9 @@
 			<ul class="flex flex-wrap gap-2">
 				{#each $categories as category}
 					<li
-						on:click={() => targetCategory = category.id}
+						on:click={() => targetCategoryId = category.id}
 						class={`${category.name.length <= 3 ? 'w-12' : 'px-2'} ${
-							targetCategory === category.id ? 'opacity-100' : 'opacity-60'
+							targetCategoryId === category.id ? 'opacity-100' : 'opacity-60'
 						} text-white cursor-pointer transition duration-300 ease-in-out hover:scale-105 hover:opacity-100 border-white h-12 flex items-center justify-center rounded-full border`}>
 						{category.name}
 					</li>

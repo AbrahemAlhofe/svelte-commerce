@@ -1,41 +1,16 @@
-import { derived, type Readable } from 'svelte/store';
-import type { Category, Product } from '$lib/types';
-import { faker } from '@faker-js/faker';
-import { categories } from './categories';
+import { readable } from 'svelte/store';
+import type { Product } from '$lib/types';
 
-const clothes: Product[] = new Array(3).fill(null).map(() => ({
-    id: faker.datatype.uuid(),
-    name: faker.commerce.productName(),
-    description: faker.commerce.productDescription(),
-    thumbnail: faker.image.food(1200, 800, true),
-    price: Number.parseInt(faker.commerce.price()),
-    properties: {
-        color: faker.helpers.arrayElement(["white", "black"]),
-        size: faker.helpers.arrayElement(["small", "medium", "large"])
-    },
-    category: ""
-}));
+export const products = readable<Product[]>([], (set) => {
 
-const cups = new Array(3).fill(null).map(() => ({
-    id: faker.datatype.uuid(),
-    name: faker.commerce.productName(),
-    description: faker.commerce.productDescription(),
-    thumbnail: faker.image.food(1200, 800, true),
-    price: Number.parseInt(faker.commerce.price()),
-    properties: {
-        color: faker.helpers.arrayElement(["white", "black"]),
-        texture: faker.helpers.arrayElement(["sharp", "flat"])
-    },
-    category: ""
-}));
+    (async () => {
 
-export const products = derived<Readable<Category[]>, Product[]>(
-    categories,
-    ($categories, set) => set(faker.helpers.shuffle([
+        const products: Array<Product> = await fetch("http://127.0.0.1:5173/products").then(response => response.json());
+    
+        console.debug({ products })
 
-        ...clothes.map(product => ({ ...product, category: ($categories.find(category => category.name === "clothes") as Category).id })),
+        set(products);
+        
+    })()
 
-        ...cups.map(product => ({ ...product, category: ($categories.find(category => category.name === "cups") as Category).id }))
-
-    ]))
-);
+})

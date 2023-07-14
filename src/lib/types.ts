@@ -15,7 +15,7 @@ export interface Product {
     properties: {
         [name: string]: string
     };
-    category: Category["id"]
+    category: Category
 }
 
 export interface ShoppingCartItem extends Product {
