@@ -7,7 +7,7 @@ export async function load({ params }) {
     
     try {
 
-        const data: Product[] = await database.query(`select Product {
+        const [product]: Product[] = await database.query(`select Product {
             id,
             name,
             description,
@@ -20,9 +20,23 @@ export async function load({ params }) {
                 properties
             }
         }
-            filter .id = <uuid>"${params.id}"`);    
+            filter .id = <uuid>"${params.id}"`);
 
-        return data[0];
+        const products: Product[] = await database.query(`select Product {
+            id,
+            name,
+            description,
+            thumbnail,
+            price,
+            properties,
+            category: {
+                id,
+                name,
+                properties
+            }
+        }`);   
+
+        return { product, products };
 
     } catch (exception) {
 

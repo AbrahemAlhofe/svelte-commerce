@@ -3,7 +3,6 @@
 	import type { Product } from '$lib/types';
 
 	// stores
-	import { products } from '$stores/products';
 	import { shoppingCart } from '$stores/shoppingCart';
 
 	// components
@@ -13,9 +12,9 @@
     import Loader from '$lib/components/Loader.svelte';
 	
 	/** @type {import('./$types').PageData} */
-	export let data: Product;
+	export let data: { product: Product, products: Product[] };
 
-	$: product = data;
+	$: product = data.product;
 	$: item = { ...product, quantity: 1 };
 
 	let addToCartProcess: Promise<void> = Promise.resolve();
@@ -141,7 +140,7 @@
 		</div>
 		<div class="px-4 py-8">
 			<div class="mb-4 text-3xl font-bold">Related Products</div>
-            <Carousel items={$products}/>
+            <Carousel items={data.products}/>
 		</div>
 	{/if}
 </div>

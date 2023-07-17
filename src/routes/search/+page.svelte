@@ -1,17 +1,18 @@
 <script lang="ts">
 	import GridTile from '$lib/components/GridTile.svelte';
-	import { products } from '$stores/products';
 	import { query } from '$stores/search';
 	import { categories } from '$stores/categories';
 	import type { Product } from '$lib/types';
     import FrownIcon from '$lib/icons/FrownIcon.svelte';
+
+	export let data: { products: Product[] };
 
 	let targetCategoryId: string | null = null;
 	let targetProperties: Product['properties'] = {};
 
 	$: properties = $categories.find(category => category.id === targetCategoryId)?.properties;
 
-	$: matchedProducts = $products
+	$: matchedProducts = data.products
 		.filter(item => {
 			if (!targetCategoryId) return item;
 			if (item.category.id === targetCategoryId) return item;
