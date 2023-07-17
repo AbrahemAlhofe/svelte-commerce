@@ -80,8 +80,9 @@
                   shoppingCart.decreaseItemQuantity(index);
                 }}
                 class="ml-auto flex h-8 w-8 items-center justify-center border-l border-white/40 bg-white/0 hover:bg-white/10"
+                disabled={item.quantity==0}
               >
-                <MinusIcon color="white"/>
+                <MinusIcon color={ item.quantity == 0 ? "gray" : "white" }/>
               </button>
               <button
                 on:click={() => {

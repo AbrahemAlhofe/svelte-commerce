@@ -15,7 +15,7 @@ export const shoppingCart = (() => {
 
         increaseItemQuantity: (index: number) => update(shoppingCart => { shoppingCart[index].quantity += 1; return shoppingCart}),
         
-        decreaseItemQuantity: (index: number) => update(shoppingCart => { shoppingCart[index].quantity -= 1; return shoppingCart})
+        decreaseItemQuantity: (index: number) => update(shoppingCart => { shoppingCart[index].quantity = Math.max(shoppingCart[index].quantity - 1, 0); return shoppingCart})
 
     }
 
