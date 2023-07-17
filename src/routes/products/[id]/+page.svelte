@@ -14,8 +14,8 @@
 	/** @type {import('./$types').PageData} */
 	export let data: { product: Product, products: Product[] };
 
-	$: product = data.product;
-	$: item = { ...product, quantity: 1 };
+	let product = data.product;
+	let item = { ...product, quantity: 1 };
 
 	let addToCartProcess: Promise<void> = Promise.resolve();
 	function addToCart() {
@@ -85,7 +85,7 @@
 							{#each values as value}
 								<button
 									on:click={() => {
-										item.properties[name] = value;
+										item = { ...item, properties: { ...item.properties, [name]: value } };
 									}}
 									class={`${value.length <= 3 ? 'w-12' : 'px-2'} ${
 										item.properties[name] === value ? 'opacity-100' : 'opacity-60'
