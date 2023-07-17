@@ -1,15 +1,13 @@
 import type { Product } from '$lib/types';
 import { error, json, type RequestHandler } from '@sveltejs/kit';
-import * as edgedb from 'edgedb';
-
-const client = edgedb.createClient();
+import database from '$lib/server/database.js';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
     
     try {
 
-        const data: Product[] = await client.query(`select Product {
+        const data: Product[] = await database.query(`select Product {
             id,
             name,
             description,

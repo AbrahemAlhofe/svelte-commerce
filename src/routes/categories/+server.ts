@@ -1,13 +1,11 @@
 import type { Product } from '$lib/types';
 import { json } from '@sveltejs/kit';
-import * as edgedb from 'edgedb';
-
-const client = edgedb.createClient();
+import database from '$lib/server/database';
 
 /** @type {import('./$types').RequestHandler} */
 export async function GET() {
     
-    const categories: Array<Product> = await client.query(`select Category {
+    const categories: Array<Product> = await database.query(`select Category {
         id,
         name,
         properties
