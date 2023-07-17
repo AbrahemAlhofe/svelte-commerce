@@ -13,9 +13,9 @@
 
 <header class="bg-black h-[7.5vh] rounded-b p-2 flex items-center justify-between">
 
-	<div class="text-white">
+	<a href="/" class="text-white !no-underline">
 		SvelteECommerce
-	</div>
+	</a>
 
 	<div class="h-full">
 		<SearchBar value="{searchQuery}"/>
