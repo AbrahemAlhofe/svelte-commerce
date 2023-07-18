@@ -12,7 +12,7 @@
 <div class="slider relative w-full overflow-scroll bg-light" class:slider--paused={isFocused} >
   <div class="slide-track flex my-4 gap-2">
     {#each items as item (item.id)}
-      <div class="slide relative h-[20vh] flex-none md:w-1/3 rounded-md overflow-hidden">
+      <div class="slide relative h-[20vh] flex-none w-full md:w-1/3 rounded-md overflow-hidden">
         <GridTile {...{...item, description: undefined, href: `/products/${item.id}` }} on:mouseover={() => isFocused = true} on:focus={() => isFocused = true} on:mouseout={() => isFocused = false} on:blur={() => isFocused = false} href={`/products/${item.id}`}/>
       </div>
     {/each}
