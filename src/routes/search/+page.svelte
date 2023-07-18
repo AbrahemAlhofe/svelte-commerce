@@ -40,7 +40,7 @@
 			<ul class="flex flex-wrap gap-2">
 				{#each $categories as category}
 					<li
-						on:click={() => targetCategoryId = category.id}
+						on:click={() => targetCategoryId === category.id ? targetCategoryId = null : targetCategoryId = category.id}
 						class={`${category.name.length <= 3 ? 'w-12' : 'px-2'} ${
 							targetCategoryId === category.id ? 'opacity-100' : 'opacity-60'
 						} text-white cursor-pointer transition duration-300 ease-in-out hover:scale-105 hover:opacity-100 border-white h-12 flex items-center justify-center rounded-full border`}>
@@ -60,7 +60,7 @@
 						<ul class="flex flex-wrap gap-2">
 							{#each values as value}
 								<li
-									on:click={() => targetProperties[name] = value}
+									on:click={() => targetProperties[name] === value ? targetProperties[name] = "" : targetProperties[name] = value }
 									class={`${value.length <= 3 ? 'w-12' : 'px-2'} ${
 										targetProperties[name] === value ? 'opacity-100' : 'opacity-60'
 									} text-white cursor-pointer transition duration-300 ease-in-out hover:scale-105 hover:opacity-100 border-white h-12 flex items-center justify-center rounded-full border`}>
