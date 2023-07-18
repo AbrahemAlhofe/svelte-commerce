@@ -19,12 +19,12 @@
         alt=""
       />
     {/if}
-    <div class="text-white absolute top-0 left-0 m-5">
-      {#if name} <div class="rounded bg-black p-3 text-2xl font-medium mb-3">{name}</div> {/if}
+    <div class="text-white absolute top-0 mx-5">
+      {#if name} <div class="rounded-b bg-black p-3 text-xl font-medium mb-3">{name}</div> {/if}
       {#if description} <div class="rounded w-fit bg-black p-3 text-sm">{description}</div> {/if}
     </div>
-    <div class="text-white absolute bottom-0 right-0 m-5">
-      {#if price !== undefined} <div class="rounded bg-black p-3 mb-3 font-bold">${price}</div> {/if}
+    <div class="text-white absolute bottom-0 right-0 mx-5">
+      {#if price !== undefined} <div class="rounded-t bg-black p-3 font-bold">${price}</div> {/if}
     </div>
   </svelte:element>
 </div>

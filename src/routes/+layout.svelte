@@ -11,13 +11,9 @@
 
 {#if isCartOpen} <ShoppingCart on:closeCart={() => isCartOpen = false} /> {/if}
 
-<main>
+<main class="relative bg-transparent overflow-hidden">
 	<slot />
 </main>
-
-<footer>
-	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-</footer>
 
 <style>
 	main {

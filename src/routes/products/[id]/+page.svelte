@@ -37,7 +37,7 @@
 	{/if}
 </svelte:head>
 
-<div class="max-w-[1024px] w-full m-auto">
+<div class="max-w-[1024px] w-full m-auto bg-transparent">
 	{#if product}
 		<div class="flex flex-col md:flex-row">
 			<div class="md:h-90 md:w-2/3">
@@ -144,3 +144,5 @@
 		</div>
 	{/if}
 </div>
+
+<img class="absolute scale-[3] blur-[35px] bottom-0 -z-10 brightness-[0.6]" src="https://loremflickr.com/1200/800/food?50062" />
