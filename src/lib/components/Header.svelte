@@ -13,7 +13,7 @@
 
 <header class="bg-black h-[7.5vh] rounded-b p-2 flex items-center justify-between">
 
-	<a href="/" class="text-white !no-underline">
+	<a href="/" class="hidden text-white !no-underline sm:block">
 		SvelteECommerce
 	</a>
 
