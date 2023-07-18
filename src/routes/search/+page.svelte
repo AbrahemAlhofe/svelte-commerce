@@ -33,8 +33,8 @@
 
 </script>
 
-<div class="w-full flex gap-5">
-	<div class="bg-black w-1/4 h-[85vh] rounded p-5">
+<div class="w-full flex gap-5 flex-col md:flex-row">
+	<div class="bg-black w-full md:w-1/4 md:h-[85vh] rounded p-5">
 		<section>
 			<h3 class="text-white text-2xl mb-3">Categories</h3>
 			<ul class="flex flex-wrap gap-2">
