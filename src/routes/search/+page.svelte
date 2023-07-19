@@ -37,45 +37,47 @@
 </script>
 
 <div class="w-full flex gap-5 flex-col md:flex-row">
-	<div class="bg-black w-full md:w-1/4 md:h-[85vh] rounded p-5">
-		<section>
-			<h3 class="text-white text-2xl mb-3">Categories</h3>
-			<ul class="flex flex-wrap gap-2">
-				{#each $categories as category}
-					<li
-						on:click={() => targetCategoryId === category.id ? targetCategoryId = null : targetCategoryId = category.id}
-						class={`${category.name.length <= 3 ? 'w-12' : 'px-2'} ${
-							targetCategoryId === category.id ? 'opacity-100' : 'opacity-60'
-						} text-white cursor-pointer transition duration-300 ease-in-out hover:scale-105 hover:opacity-100 border-white h-12 flex items-center justify-center rounded-full border`}>
-						{category.name}
-					</li>
-				{/each}
-			</ul>
-		</section>
-		{#if properties}
-		<hr class="my-5"/>
-		<section>
-			<h4 class="text-white text-2xl mb-3">Properties</h4>
-			<ul>
-				{#each Object.entries(properties) as [name, values]}
-					<li class="text-white my-2">
-						<span>{name}</span>
-						<ul class="flex flex-wrap gap-2">
-							{#each values as value}
-								<li
-									on:click={() => targetProperties[name] === value ? targetProperties[name] = "" : targetProperties[name] = value }
-									class={`${value.length <= 3 ? 'w-12' : 'px-2'} ${
-										targetProperties[name] === value ? 'opacity-100' : 'opacity-60'
-									} text-white cursor-pointer transition duration-300 ease-in-out hover:scale-105 hover:opacity-100 border-white h-12 flex items-center justify-center rounded-full border`}>
-									{value}
-								</li>
-							{/each}
-						</ul>
-					</li>
-				{/each}
-			</ul>
-		</section>
-		{/if}
+	<div class="w-full md:w-1/2 md:h-[85vh] rounded relative">
+		<div class="bg-black w-full md:w-1/5 md:h-[85vh] rounded p-5 static md:fixed">
+			<section>
+				<h3 class="text-white text-2xl mb-3">Categories</h3>
+				<ul class="flex flex-wrap gap-2">
+					{#each $categories as category}
+						<li
+							on:click={() => targetCategoryId === category.id ? targetCategoryId = null : targetCategoryId = category.id}
+							class={`${category.name.length <= 3 ? 'w-12' : 'px-2'} ${
+								targetCategoryId === category.id ? 'opacity-100' : 'opacity-60'
+							} text-white cursor-pointer transition duration-300 ease-in-out hover:scale-105 hover:opacity-100 border-white h-12 flex items-center justify-center rounded-full border`}>
+							{category.name}
+						</li>
+					{/each}
+				</ul>
+			</section>
+			{#if properties}
+			<hr class="my-5"/>
+			<section>
+				<h4 class="text-white text-2xl mb-3">Properties</h4>
+				<ul>
+					{#each Object.entries(properties) as [name, values]}
+						<li class="text-white my-2">
+							<span>{name}</span>
+							<ul class="flex flex-wrap gap-2">
+								{#each values as value}
+									<li
+										on:click={() => targetProperties[name] === value ? targetProperties[name] = "" : targetProperties[name] = value }
+										class={`${value.length <= 3 ? 'w-12' : 'px-2'} ${
+											targetProperties[name] === value ? 'opacity-100' : 'opacity-60'
+										} text-white cursor-pointer transition duration-300 ease-in-out hover:scale-105 hover:opacity-100 border-white h-12 flex items-center justify-center rounded-full border`}>
+										{value}
+									</li>
+								{/each}
+							</ul>
+						</li>
+					{/each}
+				</ul>
+			</section>
+			{/if}
+		</div>
 	</div>
 	<div class="grow">
 
