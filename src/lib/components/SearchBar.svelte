@@ -1,12 +1,15 @@
-<script>
+<script lang="ts">
     import { page } from '$app/stores';
     import { goto } from '$app/navigation';
     import SearchIcon from '$lib/icons/SearchIcon.svelte';
-	  import { setContext } from 'svelte';
-  
+	  import { getContext, setContext } from 'svelte';
+    import type { Writable } from 'svelte/store';
+    
+    const query = getContext<Writable<string>>("query");
+
     export let value = '';
     function submit() {
-      setContext("query", value);
+      query.set(value);
       if ($page.url.pathname !== 'search') goto(`/search?query=${value}`);
     }
   </script>
