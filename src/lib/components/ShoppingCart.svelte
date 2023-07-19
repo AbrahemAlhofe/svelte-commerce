@@ -18,7 +18,7 @@
 
     const shoppingCart = getContext<Writable<ShoppingCartItem[]>>("shoppingCart");
 
-    $: total = $shoppingCart.reduce((total, product) => total += product.price, 0);
+    $: total = $shoppingCart.reduce((total, item) => total += item.price * item.quantity, 0);
 
     async function checkout() { isLoading = true }
 
