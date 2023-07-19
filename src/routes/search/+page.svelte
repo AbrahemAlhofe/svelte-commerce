@@ -1,11 +1,14 @@
 <script lang="ts">
 	import GridTile from '$lib/components/GridTile.svelte';
-	import { query } from '$stores/search';
-	import { categories } from '$stores/categories';
-	import type { Product } from '$lib/types';
+	import type { Category, Product } from '$lib/types';
     import FrownIcon from '$lib/icons/FrownIcon.svelte';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
 
 	export let data: { products: Product[] };
+
+	const query = getContext<Writable<string>>("query");
+	const categories = getContext<Writable<Category[]>>("categories");
 
 	let targetCategoryId: string | null = null;
 	let targetProperties: Product['properties'] = {};

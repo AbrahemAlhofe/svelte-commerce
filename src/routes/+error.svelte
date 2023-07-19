@@ -2,7 +2,7 @@
 	import PageIcon from '$lib/icons/PageIcon.svelte';
   import ServerIcon from '$lib/icons/ServerIcon.svelte';
   import { page } from '$app/stores';
-  import { dev } from '$app/env';
+  import { dev } from '$app/environment';
 </script>
   
 

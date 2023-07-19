@@ -1,10 +1,7 @@
 <script lang="ts">
     
-    import { createEventDispatcher } from 'svelte';
+    import { createEventDispatcher, getContext } from 'svelte';
 
-    // Store
-    import { shoppingCart } from '$stores/shoppingCart';
-    
     // Icons
     import ShoppingBagIcon from '$lib/icons/ShoppingBagIcon.svelte';
     import CloseIcon from '$lib/icons/CloseIcon.svelte';
@@ -13,10 +10,14 @@
 
     // Components
     import Loader from '$lib/components/Carousel.svelte';
+  	import type { ShoppingCartItem } from '../types';
+    import type { Writable } from 'svelte/store';
 
     const dispatch = createEventDispatcher();
     let isLoading = false;
-    
+
+    const shoppingCart = getContext<Writable<ShoppingCartItem[]>>("shoppingCart");
+
     $: total = $shoppingCart.reduce((total, product) => total += product.price, 0);
 
     async function checkout() { isLoading = true }

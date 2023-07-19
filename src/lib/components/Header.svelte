@@ -1,9 +1,13 @@
 <script lang="ts">
 	import ShoppingBagIcon from '$lib/icons/ShoppingBagIcon.svelte';
 	import { createEventDispatcher } from 'svelte';
-	import { shoppingCart } from '$stores/shoppingCart'; 
 	import SearchBar from '$lib/components/SearchBar.svelte';
 	import { page } from '$app/stores';
+	import { getContext } from 'svelte';
+	import type { ShoppingCartItem } from '../types';
+	import type { Writable } from 'svelte/store';
+
+	const shoppingCart = getContext<Writable<ShoppingCartItem[]>>("shoppingCart");
 
 	const dispatch = createEventDispatcher();
 	

@@ -1,23 +1,26 @@
 <script lang="ts">
 	// types
-	import type { Product } from '$lib/types';
+	import type { Product, ShoppingCartItem } from '$lib/types';
 
 	// stores
-	import { shoppingCart } from '$stores/shoppingCart';
+	import { getContext } from 'svelte';
 
 	// components
 	import GridTile from '$lib/components/GridTile.svelte';
 	import StarIcon from '$lib/icons/StarIcon.svelte';
     import Carousel from '$lib/components/Carousel.svelte';
     import Loader from '$lib/components/Loader.svelte';
+	import type { Writable } from 'svelte/store';
 	
 	/** @type {import('./$types').PageData} */
 	export let data: { product: Product, products: Product[] };
 
 	let product = data.product;
 	let item = { ...product, quantity: 1 };
+	const shoppingCart = getContext<Writable<ShoppingCartItem[]>>("shoppingCart");
 
 	let addToCartProcess: Promise<void> = Promise.resolve();
+
 	function addToCart() {
 		if (product) {
 			addToCartProcess = new Promise((resolve, reject) => {
