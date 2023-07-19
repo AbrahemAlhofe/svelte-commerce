@@ -20,7 +20,7 @@
 
     $: total = $shoppingCart.reduce((total, item) => total += item.price * item.quantity, 0);
 
-    async function checkout() { isLoading = true }
+    async function checkout() { isLoading = true; setTimeout(() => isLoading = false, 2000) }
 
   </script>
   
