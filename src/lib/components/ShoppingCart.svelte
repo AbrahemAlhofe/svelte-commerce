@@ -9,7 +9,7 @@
     import PlusIcon from '$lib/icons/PlusIcon.svelte';
 
     // Components
-    import Loader from '$lib/components/Carousel.svelte';
+    import Loader from '$lib/components/Loader.svelte';
   	import type { ShoppingCartItem } from '../types';
     import type { Writable } from 'svelte/store';
 
@@ -26,9 +26,9 @@
   
   <div
     on:click|self
-    class="absolute inset-0 z-50 flex max-h-screen w-full justify-end overflow-hidden bg-black/50"
+    class="absolute inset-0 z-50 flex h-full w-full justify-end overflow-hidden bg-black/50"
   >
-    <div class="z-50 w-full bg-black p-6 md:w-1/2 lg:w-1/3">
+    <div class="z-50 w-full h-screen fixed bg-black p-6 md:w-1/2 lg:w-1/3">
       <div class="mb-6 flex w-full items-center justify-between">
         <div class="text-2xl font-medium text-white">My Cart</div>
         <button on:click={ () => dispatch("closeCart") } class="text-sm uppercase opacity-80 hover:opacity-100 text-white">close</button>
